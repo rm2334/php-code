@@ -2,9 +2,9 @@ Function.php
 ***
 ```php
 // Define Directory
-define('THEMECSS', get_template_directory_uri().'/css/');
+define('XXXX', get_template_directory_uri().'/xxx/');
 
-wp_enqueue_script('bootstrap',THEMEJS.'bootstrap.min.js',array(),'3.0.3',true);
+wp_enqueue_script('yyy',XXXX.'zzz.js',array(),'1.0',true);
 ```
 
 ```php
@@ -53,7 +53,7 @@ PHP File
 ```php
 // customize admin footer text
 function custom_admin_footer() {
-        echo '<p>Develop by: <a href="http://www.webnanny.ie">Webnanny</a>, Customize by: <a href="http://www.cookingwp.com" target="_blank" title="Developer">Tawhidul Islam</a> Powered by: Wordpress</p>';
+        echo 'Lorem Ipsum dolor';
 } 
 add_filter('admin_footer_text', 'custom_admin_footer');
 ```
@@ -71,11 +71,11 @@ require_once($wp_load);
 
 ```php
 // Themes Option Using PHP File
-global $smof_data;
+global $variable;
 $output = '';
 
-if(isset($smof_data['body_bg'])):
-	$output .= 'body{ background: '.$smof_data['body_bg'] .'; }';
+if(isset($variable['option'])):
+	$output .= 'body{ background: '.$variable['option'] .'; }';
 endif;
 
 echo $output;
@@ -83,9 +83,8 @@ echo $output;
 
 ```php
 // Themes Option Using Functions
-$box_options = pukka_fp_box_settings();
-	//add_image_size('thumb-content', 615, 9999, false); // single page
-	add_image_size('thumb-brick-big', $box_options['big_img_width'], $box_options['big_img_height'], true); // big brick
+$variable = variable();
+	add_image_size('thumb-big', $variable['option-width'], $variable['option-height'], true); // big image
 ```
 
 ```php
@@ -115,21 +114,21 @@ function dw_timeline_title() {
     } elseif (is_post_type_archive()) {
       return apply_filters('the_title', get_queried_object()->labels->name);
     } elseif (is_day()) {
-      return sprintf(__('Daily Archives: %s', 'dw-timeline'), get_the_date());
+      return sprintf(__('Daily Archives: %s', 'xxxx'), get_the_date());
     } elseif (is_month()) {
-      return sprintf(__('Monthly Archives: %s', 'dw-timeline'), get_the_date('F Y'));
+      return sprintf(__('Monthly Archives: %s', 'xxxx'), get_the_date('F Y'));
     } elseif (is_year()) {
-      return sprintf(__('Yearly Archives: %s', 'dw-timeline'), get_the_date('Y'));
+      return sprintf(__('Yearly Archives: %s', 'xxxx'), get_the_date('Y'));
     } elseif (is_author()) {
       $author = get_queried_object();
-      return sprintf(__('Author Archives: %s', 'dw-timeline'), $author->display_name);
+      return sprintf(__('Author Archives: %s', 'xxxx'), $author->display_name);
     } else {
       return single_cat_title('', false);
     }
   } elseif (is_search()) {
-    return sprintf(__('Search Results for %s', 'dw-timeline'), get_search_query());
+    return sprintf(__('Search Results for %s', 'xxxx'), get_search_query());
   } elseif (is_404()) {
-    return __('Not Found', 'dw-timeline');
+    return __('Not Found', 'xxxx');
   } else {
     return get_the_title();
   }
@@ -138,13 +137,13 @@ function dw_timeline_title() {
 
 ```php
 // Body Class
-function dw_minion_body_classes( $classes ) {
+function body_classes( $classes ) {
 	if ( is_multi_author() ) {
 		$classes[] = 'group-blog';
 	}
 	return $classes;
 }
-add_filter( 'body_class', 'dw_minion_body_classes' );
+add_filter( 'body_class', 'body_classes' );
 ```
 Normal
 ***
@@ -168,15 +167,15 @@ Normal
 
 ```php
 // Multi Dropdown
-  <?php $video_source = rwmb_meta( 'cookingwp_video_source' ); ?>
-            <?php $video = rwmb_meta( 'cookingwp_video' ); ?>
+  <?php $variable = rwmb_meta( 'name' ); ?>
+            <?php $variablex = rwmb_meta( 'name' ); ?>
 
-            <?php if($video_source == 1): ?>
-                <?php echo rwmb_meta( 'cookingwp_video' ); ?>
-            <?php elseif ($video_source == 2): ?>
-                <?php echo ''.$video.''; ?>
-            <?php elseif ($video_source == 3): ?>
-                <?php echo ''.$video.''; ?>
+            <?php if($variable == 1): ?>
+                <?php echo $variablex; ?>
+            <?php elseif ($variable == 2): ?>
+                <?php echo ''.$variablex.''; ?>
+            <?php elseif ($variable == 3): ?>
+                <?php echo ''.$variablex.''; ?>
             <?php endif; ?>
 ```
 
@@ -189,31 +188,19 @@ Disallow: /wp-admin/
 Disallow: /wp-content/
 Disallow: /wp-includes/
 Disallow: /xmlrpc.php
-Disallow: /wp-
-Allow: /wp-content/uploads/
-Sitemap: http://example.com/sitemap.xml
-
-User-agent: *
-
 Disallow: /feed/
 Disallow: /cgi-bin/
-Disallow: /wp-admin/
-Disallow: /wp-content/
-Disallow: /wp-includes/
-Disallow: /trackback/
-Disallow: /xmlrpc.php
 Disallow: ?wptheme=
 Disallow: /blackhole/
 Disallow: /transfer/
 Disallow: /tweets/
 Disallow: /mint/
-
+Disallow: /wp-
+Allow: /wp-content/uploads/
 Allow: /tag/mint/
 Allow: /tag/feed/
 Allow: /wp-content/online/
-
-Sitemap: http://perishablepress.com/sitemap-perish.xml
-Sitemap: http://perishablepress.com/sitemap-press.xml
+Sitemap: http://example.com/sitemap.xml
 
 User-agent: ia_archiver
 Disallow: /
@@ -234,8 +221,6 @@ Disallow: /*/xmlrpc.php
 Allow: /*/20*/wp-*
 Allow: /press/feed/$
 Allow: /press/tag/feed/$
-Allow: /*/wp-content/online/*
-Sitemap: http://perishablepress.com/sitemap.xml
 
 User-agent: ia_archiver
 Disallow: /
