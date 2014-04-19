@@ -1,11 +1,13 @@
-======= Function.php =======
-----------
+Function.php
+***
 ```php
 // Define Directory
 define('THEMECSS', get_template_directory_uri().'/css/');
 
 wp_enqueue_script('bootstrap',THEMEJS.'bootstrap.min.js',array(),'3.0.3',true);
+```
 
+```php
 // Function Check
 if(!function_exists('xxxx')):
 
@@ -29,6 +31,7 @@ function custom_function () {
     echo 'XXXXX';
 }
 add_action('wp_head', 'custom_function');
+```
 
 ```php
 // remove unwanted items
@@ -43,9 +46,9 @@ remove_action( 'wp_head', 'parent_post_rel_link'); // prev link
 remove_action( 'wp_head', 'start_post_rel_link'); // start link
 remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0); // Display relational links for the posts adjacent to the current post.
 remove_action( 'wp_head', 'wp_generator'); // Display the XHTML generator that is generated on the wp_head hook, WP version			
-
-====== PHP File ======
-======================
+```
+PHP File
+***
 
 ```php
 // customize admin footer text
@@ -53,6 +56,7 @@ function custom_admin_footer() {
         echo '<p>Develop by: <a href="http://www.webnanny.ie">Webnanny</a>, Customize by: <a href="http://www.cookingwp.com" target="_blank" title="Developer">Tawhidul Islam</a> Powered by: Wordpress</p>';
 } 
 add_filter('admin_footer_text', 'custom_admin_footer');
+```
 
 ```php
 // PHP CSS
@@ -63,6 +67,7 @@ $parse_uri = explode('wp-content', $_SERVER['SCRIPT_FILENAME']);
 $wp_load = $parse_uri[0].'wp-load.php';
 require_once($wp_load);
 ?>
+```
 
 ```php
 // Themes Option Using PHP File
@@ -74,18 +79,21 @@ if(isset($smof_data['body_bg'])):
 endif;
 
 echo $output;
+```
 
 ```php
 // Themes Option Using Functions
 $box_options = pukka_fp_box_settings();
 	//add_image_size('thumb-content', 615, 9999, false); // single page
 	add_image_size('thumb-brick-big', $box_options['big_img_width'], $box_options['big_img_height'], true); // big brick
+```
 
 ```php
 // Comment reply js
 if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+```
 
 ```php
 // Dynamic title
@@ -126,7 +134,9 @@ function dw_timeline_title() {
     return get_the_title();
   }
 }
+```
 
+```php
 // Body Class
 function dw_minion_body_classes( $classes ) {
 	if ( is_multi_author() ) {
@@ -135,9 +145,10 @@ function dw_minion_body_classes( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'dw_minion_body_classes' );
-
-==== Normal ====
-================
+```
+Normal
+***
+```php
 // Comment Number
 <?php // conditional comment link text
 		if (comments_open()) :
@@ -145,13 +156,17 @@ add_filter( 'body_class', 'dw_minion_body_classes' );
 		else :
 			comments_number(__('Comments'), __('1 Response'), __('% Responses'));
 		endif; ?>
+```
 
+```php
 // IF
 <?php $xxx = bloginfo('pingback_url'); ?>
 	<?php if($xxx != ''): ?>
 	<?php echo $xxx; ?>
 <?php endif; ?>
+```
 
+```php
 // Multi Dropdown
   <?php $video_source = rwmb_meta( 'cookingwp_video_source' ); ?>
             <?php $video = rwmb_meta( 'cookingwp_video' ); ?>
@@ -163,7 +178,9 @@ add_filter( 'body_class', 'dw_minion_body_classes' );
             <?php elseif ($video_source == 3): ?>
                 <?php echo ''.$video.''; ?>
             <?php endif; ?>
+```
 
+```php
 // .htaccess
 User-agent: *
 Disallow: /feed/
@@ -222,3 +239,4 @@ Sitemap: http://perishablepress.com/sitemap.xml
 
 User-agent: ia_archiver
 Disallow: /
+```
